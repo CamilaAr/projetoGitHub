@@ -1,5 +1,6 @@
 <?php
 
+#codigo que recebe o nome do usuario digitado e adiciona
 include_once("sessaopglogada.php");
 include_once("conexaoUsuario.php");	
 $usuario = $_SESSION['UsuarioGit'];

@@ -1,6 +1,7 @@
 <?php
 include_once("header.php");
 include_once("conexaoUsuario.php");	
+#arquivo para sessoes logadas que precisam da conexao e verificacao
 ?>
 <body>
 <?php

@@ -20,8 +20,8 @@ include_once("sessaopglogada.php");
 
 			</fieldset>
 		</form>	
-		<p>Caso o usuário seja encontrado terá a opção de ver detalhes e deletá-lo<br>
-				Caso o usuário não seja encontrado ele será adicionado ao banco de dados </p>
+		<p>Caso o usuário seja encontrado terá a opção de deletá-lo<br>
+				Caso o usuário não seja encontrado terá a opção de adiciona-lo </p>
 
 		<p class="text-center text-danger">
 					<?php if(isset($_SESSION['erroUsuario'])){
@@ -34,6 +34,7 @@ include_once("sessaopglogada.php");
 	<div>
 		<legend class="uk-legend">Lista de Usuários salvos</legend>
 		<?php
+		#pesquisa e listagem dos usuarios git que tem como chave estrangeira a chave do usuario ativo
 		$idUsuario = $_SESSION['id'];
 		$result_usuario = "SELECT * FROM usuariogit WHERE idUsuario = '$idUsuario'";
 		$resultado_usuario = mysqli_query($conn, $result_usuario);
@@ -65,6 +66,7 @@ include_once("sessaopglogada.php");
 				<div class="uk-margin">
                         <select name="info" class="uk-select">
 							<?php
+							#pesquisa e envio do usuário desejado para mostrar os dados
 							$result_usuario = "SELECT * FROM usuariogit WHERE idUsuario = '$idUsuario'";
 							$resultado_usuario = mysqli_query($conn, $result_usuario);
 							$resultado = mysqli_fetch_all($resultado_usuario, MYSQLI_ASSOC);
@@ -80,6 +82,7 @@ include_once("sessaopglogada.php");
 			</fieldset>
 		</form>
 		<p class="text-center text-danger">
+			<!--mensagem de erro caso acesse a pagina incorretamente -->
 					<?php if(isset($_SESSION['erroBusca'])){
 						echo $_SESSION['erroBusca'];
 						unset($_SESSION['erroBusca']);

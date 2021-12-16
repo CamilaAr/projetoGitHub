@@ -1,5 +1,8 @@
 <?PHP
 
+
+#esse arquivo é apenas para fins de conferencia e cola
+
 /*base do curl
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, 'https://www.amazon.com');

@@ -1,12 +1,14 @@
 <?php
 include_once("sessaopglogada.php");
 
+#recebe o usuario de forma segura
 $usuario = mysqli_real_escape_string($conn,$_POST['usuario']);
 $_SESSION['UsuarioGit'] = mysqli_real_escape_string($conn,$_POST['usuario']);
 
 ?>
 
 <?php
+#se nao tiver o usuario volta a pagina
 if (!$usuario){
     echo "erro";
 	$_SESSION['erroUsuario'] = "Usuário vazio, digite novamente";
@@ -14,12 +16,15 @@ if (!$usuario){
 			header("Location: administrativo.php");
 }
 
+
+#pesquisa se o usuario existe no bd
 $usuarioGit =  $_SESSION['UsuarioGit'];
 
 $result_usuario = "SELECT * FROM usuariogit WHERE usuarioGit = '$usuario' LIMIT 1";
 		$resultado_usuario = mysqli_query($conn, $result_usuario);
 		$resultado = mysqli_fetch_assoc($resultado_usuario);
 
+        #se o usuario existir no bd da a opcao de deletar
         if(isset($resultado)){
             
             ?>
@@ -36,6 +41,7 @@ $result_usuario = "SELECT * FROM usuariogit WHERE usuarioGit = '$usuario' LIMIT 
         <?php }
 
         else{
+            #se o usuario não existir no bd da a opcao de adicionar
 
             ?>
             <h2>Usuário não encontrado: <?php echo $usuarioGit; ?></h2>

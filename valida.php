@@ -1,4 +1,6 @@
 <?php
+
+#valida se esta conectado e manda para a pagina de administração
 	session_start();	
 	//Incluindo a conexão com banco de dados
 	include_once("conexaoUsuario.php");	

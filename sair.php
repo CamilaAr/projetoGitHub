@@ -1,4 +1,5 @@
 <?php
+#finalização das variaveis no caso do usuário optar por sair
 	session_start();
 	
 	unset(
