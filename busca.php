@@ -1,6 +1,6 @@
 <?php
 include_once("sessaopglogada.php");
-include_once("conexaoUsuario.php");	
+
 $usuario = mysqli_real_escape_string($conn,$_POST['usuario']);
 $_SESSION['UsuarioGit'] = mysqli_real_escape_string($conn,$_POST['usuario']);
 
@@ -10,38 +10,26 @@ $_SESSION['UsuarioGit'] = mysqli_real_escape_string($conn,$_POST['usuario']);
 if (!$usuario){
     echo "erro";
 	$_SESSION['erroUsuario'] = "Usuário vazio, digite novamente";
-    
+
 			header("Location: administrativo.php");
 }
+
+$usuarioGit =  $_SESSION['UsuarioGit'];
 
 $result_usuario = "SELECT * FROM usuariogit WHERE usuarioGit = '$usuario' LIMIT 1";
 		$resultado_usuario = mysqli_query($conn, $result_usuario);
 		$resultado = mysqli_fetch_assoc($resultado_usuario);
 
         if(isset($resultado)){
-            $usuarioGit =  $resultado['usuarioGit'];
+            
             ?>
             <h2>Usuário encontrado: <?php echo $usuarioGit; ?></h2>
 
+            <legend class="uk-legend">Deseja deletar o usuário?</legend>
 
-            <form method="POST" action="opcoes.php">
-                <fieldset class="uk-fieldset"  >
+            <a class="btn btn-lg btn-danger btn-block" type="submit" href="./opcoes.php">CONFIRMAR</a>
 
-                    <legend class="uk-legend">Escolha sua ação</legend>
-
-                    <div class="uk-margin">
-                        <select name="opcoesEncontrado" class="uk-select">
-                            <option value="visualizar">Visualizar Dados:</option>
-                            <option value="deletar">Deletar</option>
-                        </select>
-                    </div>
-
-
-                    <button class="btn btn-lg btn-danger btn-block" type="submit">Enviar</button>
-
-
-                </fieldset>
-            </form>	
+          
 
             
 
@@ -49,13 +37,18 @@ $result_usuario = "SELECT * FROM usuariogit WHERE usuarioGit = '$usuario' LIMIT 
 
         else{
 
-            $usuarioGit = $_POST['usuario'];
-            $idSessao = $_SESSION['id'];
-            mysqli_query($conn, "INSERT INTO usuariogit (idUsuario, usuarioGit) VALUES ('$idSessao', '$usuarioGit')");
-           ?>
-            <h2> Usuario <?php echo $usuario; ?> adicionado com sucesso! </h2>
-            <?php
-            }
+            ?>
+            <h2>Usuário não encontrado: <?php echo $usuarioGit; ?></h2>
+
+            <legend class="uk-legend">Deseja adicionar o usuário?</legend>
+
+            <a class="btn btn-lg btn-danger btn-block" type="submit" href="./opcoes2.php">CONFIRMAR</a>
+
+          
+
+            
+
+        <?php }
 
 ?>
 

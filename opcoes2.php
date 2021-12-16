@@ -17,9 +17,11 @@ $usuario = $_SESSION['UsuarioGit'];
    <?php } */
     if (isset($_SESSION['UsuarioGit'])) 
     {
-        mysqli_query($conn, "DELETE FROM usuariogit WHERE usuarioGit = '$usuario'"); 
-        ?>
-        <h2> Usuario <?php echo $usuario; ?> deletado com sucesso! </h2>
+        $usuarioGit = $_SESSION['UsuarioGit'];
+        $idSessao = $_SESSION['id'];
+        mysqli_query($conn, "INSERT INTO usuariogit (idUsuario, usuarioGit) VALUES ('$idSessao', '$usuarioGit')");
+       ?>
+        <h2> Usuario <?php echo $usuario; ?> adicionado com sucesso! </h2>
         
 
    <?php }
@@ -37,4 +39,3 @@ $usuario = $_SESSION['UsuarioGit'];
     <?php
 include_once("footerPgLogada.php");
 ?>
-
